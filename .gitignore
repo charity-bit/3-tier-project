@@ -1,0 +1,32 @@
+# Compiled files
+*.tfstate
+*.tfstate.backup
+.terraform.tfstate.lock.info
+**/.terraform.lock.hcl
+*.tfvars
+*backend.tf
+
+# Module directory
+.terraform/
+.idea
+*.iml
+
+# Build Harness
+.build-harness
+build-harness/
+
+## VS directory
+.vs
+.pre-commit-config.yaml
+*.hcl
+*.tmp
+
+## Infracost
+.infracost
+example/
+
+## manifest
+manifests/
+
+## Notes
+*.txt
