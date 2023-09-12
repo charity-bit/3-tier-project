@@ -4,7 +4,6 @@
 .terraform.tfstate.lock.info
 **/.terraform.lock.hcl
 *.tfvars
-*backend.tf
 
 # Module directory
 .terraform/
