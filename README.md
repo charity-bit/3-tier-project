@@ -7,6 +7,11 @@ This repository contains Terraform configurations to provision a 3-tier applicat
 - **Terraform**: Make sure you have Terraform [installed](https://www.terraform.io/downloads.html) on your local machine.
 - **AWS Credentials**: Configure your AWS credentials with the necessary permissions.
 
+# The Architecture
+<img src="./architecture.png" />
+This is just a basic architecture of a three tier-architecture I have built for now. Over the next few weeks I will be adding alittle bit of something to improve the architecture to conform to the well architecured framework and more functionalities that AWS has to offer.
+
+Monitoring with Cloud Watch, Auditing with Cloud Trail,IAM for user and Access management you name it.
 ## Getting Started
 
 1. **Clone the Repository**:
