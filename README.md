@@ -9,7 +9,7 @@ This repository contains Terraform configurations to provision a 3-tier applicat
 
 # The Architecture
 <img src="./architecture.png" />
-This is just a basic architecture of a three tier-architecture I have built for now. Over the next few weeks I will be adding alittle bit of something to improve the architecture to conform to the well architecured framework and more functionalities that AWS has to offer.
+This is just a basic architecture of a three tier-architecture I have built for now. Over the next few weeks I will be adding alittle bit of something to improve the architecture to conform to the well architecured framework and add more functionalities and services that AWS has to offer.
 
 Monitoring with Cloud Watch, Auditing with Cloud Trail,IAM for user and Access management you name it.
 ## Getting Started
