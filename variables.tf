@@ -47,5 +47,23 @@ variable "lb_unhealthy_threshold" {}
 
 
 
+#RDS Variables
+variable "rds_allocated_storage" {}
+variable "rds_allow_major_version_upgrade" {}
+variable "rds_backup_retention_period" {}
+variable "rds_db_engine" {}
+variable "rds_db_engine_version" {}
+variable "rds_db_instance_class" {}
+variable "rds_db_password" {}
+variable "rds_multi_az" {}
+variable "rds_parameter_group_name" {}
+variable "rds_skip_final_snapshot" {}
+variable "rds_storage_type" {}
+#variable "rds_subnet_ids" {}
+variable "rds_username" {}
+#variable "rds_vpc_security_group_id" {}
+
+
+
 
 

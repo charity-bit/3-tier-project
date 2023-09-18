@@ -109,7 +109,7 @@ module "rtb" {
   private_data_attach_subnets_ids = module.networking.private_db_subnet_ids
   public_attach_subnets_ids = module.networking.public_subnet_ids
 
-  rtb_cidr = var.rtb_cidr 
+  rtb_cidr = var.rtb_rtb_cidr
 }
 
 #EC2 Instances
@@ -173,7 +173,7 @@ module "web_app_backend" {
 #Load Balancers
 module "web_lb" {
   source  = "app.terraform.io/orina-org/lb/aws"
-  version = "1.1.0"
+  version = "2.0.0"
 
   project = var.project
   region = var.region
@@ -203,7 +203,7 @@ module "web_lb" {
 
 module "app_lb" {
   source  = "app.terraform.io/orina-org/lb/aws"
-  version = "1.1.0"
+  version = "2.0.0"
 
   project = var.project
   region = var.region
@@ -230,3 +230,31 @@ module "app_lb" {
   
 }
 
+#Database instances
+# Master and Read Replica 
+module "rds" {
+  source  = "app.terraform.io/orina-org/rds/aws"
+  version = "1.1.0"
+
+
+  project = var.project
+  region = var.region
+
+  
+  subnet_ids = module.networking.private_db_subnet_ids
+  vpc_security_group_id = module.db_sg.sg_id
+
+
+  allocated_storage = var.rds_allocated_storage
+  allow_major_version_upgrade = var.rds_allow_major_version_upgrade
+  backup_retention_period = var.rds_backup_retention_period
+  db_engine = var.rds_db_engine
+  db_engine_version = var.rds_db_engine_version
+  db_instance_class = var.rds_db_instance_class
+  db_password = var.rds_db_password
+  multi_az = var.rds_multi_az
+  parameter_group_name = var.rds_parameter_group_name
+  skip_final_snapshot = var.rds_skip_final_snapshot
+  storage_type = var.rds_storage_type
+  username = var.rds_username
+}
