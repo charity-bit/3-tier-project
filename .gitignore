@@ -30,3 +30,8 @@ manifests/
 
 ## Notes
 *.txt
+
+
+##Setup scripts
+frontend_setup.sh
+backend_setup.sh

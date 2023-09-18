@@ -128,7 +128,7 @@ module "web_app_frontend" {
   ami = var.ec2_asg_ami
   key_name = var.ec2_asg_key_name
   ec2_name = "Web FrontEnd"
-  user_data = "./frontend.sh"
+  user_data = "./frontend_setup.sh"
   vpc_security_group_ids = [module.web_sg.sg_id]
 
 
@@ -140,6 +140,10 @@ module "web_app_frontend" {
   health_check_type = var.ec2_asg_health_check_type
   target_group_arn = module.web_lb.lb_target_group_arn
 }
+
+
+
+#Load Balancer  for Frontend
 
 
 
