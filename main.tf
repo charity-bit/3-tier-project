@@ -108,9 +108,37 @@ module "rtb" {
   private_app_attach_subnets_ids = module.networking.private_app_attach_subnets_ids
   private_data_attach_subnets_ids = module.networking.private_db_subnet_ids
   public_attach_subnets_ids = module.networking.public_subnet_ids
-  
-  rtb_cidr = var.rtb_cidr
-  
+
+  rtb_cidr = var.rtb_cidr 
+}
+
+#EC2 Instances
+
+module "web_app_frontend" {
+  source  = "app.terraform.io/orina-org/ec2-asg/aws"
+  version = "1.1.0"
+
+  region = var.region
+  project = var.project
+  tags = var.tags
+  tier-name = "WEB-Tier"
+
+
+  instance_type = var.ec2_asg_instance_type
+  ami = var.ec2_asg_ami
+  key_name = var.ec2_asg_key_name
+  ec2_name = "Web FrontEnd"
+  user_data = "./frontend.sh"
+  vpc_security_group_ids = [module.web_sg.sg_id]
+
+
+  vpc_zone_identifier = module.networking.public_subnet_ids
+  min_size = var.ec2_asg_min_size
+  max_size = var.ec2_asg_max_size
+  desired_size = var.ec2_asg_desired_size
+  health_check_grace_period = var.ec2_asg_health_check_grace_period
+  health_check_type = var.ec2_asg_health_check_type
+  target_group_arn = module.web_lb.lb_target_group_arn
 }
 
 
