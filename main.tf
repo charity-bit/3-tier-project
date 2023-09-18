@@ -105,7 +105,7 @@ module "rtb" {
   vpc_id = module.networking.vpc_id
   igw_id = module.networking.nat_id
   nat_id = module.networking.nat_id
-  private_app_attach_subnets_ids = module.networking.private_app_attach_subnets_ids
+  private_app_attach_subnets_ids = module.networking.private_app_subnet_ids
   private_data_attach_subnets_ids = module.networking.private_db_subnet_ids
   public_attach_subnets_ids = module.networking.public_subnet_ids
 
@@ -178,7 +178,7 @@ module "web_lb" {
   project = var.project
   region = var.region
   tags = var.tags
-  tier-name = "WEB-Tier"
+  tier-name = "web"
 
   healthly_threshold = var.lb_healthly_threshold
   interval =  var.lb_interval
@@ -208,11 +208,11 @@ module "app_lb" {
   project = var.project
   region = var.region
   tags = var.tags
-  tier-name = "APP-Tier"
+  tier-name = "app"
 
   healthly_threshold = var.lb_healthly_threshold
   interval =  var.lb_interval
-  lb_name = "Backend-Load-Balancer"
+  lb_name = "app-lb"
   lb_type = var.lb_lb_type
   listener_port = var.lb_listener_port
   listener_protocol = var.lb_listener_protocol
@@ -234,7 +234,7 @@ module "app_lb" {
 # Master and Read Replica 
 module "rds" {
   source  = "app.terraform.io/orina-org/rds/aws"
-  version = "1.1.0"
+  version = "2.1.0"
 
 
   project = var.project

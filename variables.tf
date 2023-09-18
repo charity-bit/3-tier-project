@@ -25,7 +25,6 @@ variable "rtb_rtb_cidr" {}
 
 variable "ec2_asg_ami" {}
 variable "ec2_asg_desired_size" {}
-variable "ec2_asg_ec2_name" {}
 variable "ec2_asg_health_check_grace_period" {}
 variable "ec2_asg_health_check_type" {}
 variable "ec2_asg_instance_type" {}
