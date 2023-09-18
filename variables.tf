@@ -17,3 +17,9 @@ variable "networking_vpc_cidr" {}
 // Security Groups
 variable "web_allowed_inbound_traffic" {}
 
+#Route Table Variables
+variable "rtb_rtb_cidr" {}
+
+
+
+

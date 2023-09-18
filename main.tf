@@ -93,5 +93,25 @@ module "db_sg" {
   }
 }
 
+#Route Tables
+module "rtb" {
+  source  = "app.terraform.io/orina-org/rtb/aws"
+  version = "2.1.0"
+
+  project = var.project
+  region = var.region
+  tags = var.tags
+  
+  vpc_id = module.networking.vpc_id
+  igw_id = module.networking.nat_id
+  nat_id = module.networking.nat_id
+  private_app_attach_subnets_ids = module.networking.private_app_attach_subnets_ids
+  private_data_attach_subnets_ids = module.networking.private_db_subnet_ids
+  public_attach_subnets_ids = module.networking.public_subnet_ids
+  
+  rtb_cidr = var.rtb_cidr
+  
+}
+
 
 
