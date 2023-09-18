@@ -3,39 +3,37 @@
 
 
 #Storing in s3
-terraform {
-  backend "s3" {
-      bucket = "bucket-name"
-      key    = "state/terraform.tfstate"
-      region = "region-name"
-      dynamodb_table = "dynamodb-table"
-      encrypt = "true"
-  }
-}
+# terraform {
+#   backend "s3" {
+#       bucket = "bucket-name"
+#       key    = "state/terraform.tfstate"
+#       region = "region-name"
+#       dynamodb_table = "dynamodb-table"
+#       encrypt = "true"
+#   }
+# }
 
 
 #Storing in terraform cloud
-terraform {
+# terraform {
+#   cloud {
+#     organization = "orina-org"
 
-    cloud {
-        organization = "your-organization-name"
-        workspaces {
-        name = "your-workspace-name"
-
-        }
-
-    }
- }
+#     workspaces {
+#       name = "devops"
+#     }
+#   }
+# }
 
 #Terraform Enterprise
 
-terraform {
-  cloud {
-    hostname = "your-host-name"
-    organization = "your-organization-name"
-    workspaces {
-      name = "workspace-name"
-    }
-  }
+# terraform {
+#   cloud {
+#     hostname = "your-host-name"
+#     organization = "your-organization-name"
+#     workspaces {
+#       name = "workspace-name"
+#     }
+#   }
 
-}
+# }
