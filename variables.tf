@@ -36,22 +36,15 @@ variable "ec2_asg_min_size" {}
 #Load Balancer Variables
 variable "lb_healthly_threshold" {}
 variable "lb_interval" {}
-variable "lb_lb_name" {}
 variable "lb_lb_type" {}
 variable "lb_listener_port" {}
 variable "lb_listener_protocol" {}
 variable "lb_matcher" {}
 variable "lb_path" {}
 variable "lb_priority" {}
-variable "lb_project" {}
-variable "lb_region" {}
-variable "lb_security_groups" {}
-variable "lb_subnets" {}
-variable "lb_tags" {}
-variable "lb_tier-name" {}
 variable "lb_timeout" {}
 variable "lb_unhealthy_threshold" {}
-variable "lb_vpc_id" {}
+
 
 
 

@@ -141,9 +141,92 @@ module "web_app_frontend" {
   target_group_arn = module.web_lb.lb_target_group_arn
 }
 
+module "web_app_backend" {
+  source  = "app.terraform.io/orina-org/ec2-asg/aws"
+  version = "1.1.0"
+
+  region = var.region
+  project = var.project
+  tags = var.tags
+  tier-name = "APP-Tier"
 
 
-#Load Balancer  for Frontend
+  instance_type = var.ec2_asg_instance_type
+  ami = var.ec2_asg_ami
+  key_name = var.ec2_asg_key_name
+  ec2_name = "Web Backend"
+  user_data = "./backend_setup.sh"
+  vpc_security_group_ids = [module.app_sg.sg_id]
 
 
+  vpc_zone_identifier = module.networking.private_app_subnet_ids
+  min_size = var.ec2_asg_min_size
+  max_size = var.ec2_asg_max_size
+  desired_size = var.ec2_asg_desired_size
+  health_check_grace_period = var.ec2_asg_health_check_grace_period
+  health_check_type = var.ec2_asg_health_check_type
+  target_group_arn = module.app_lb.lb_target_group_arn
+}
+
+
+
+#Load Balancers
+module "web_lb" {
+  source  = "app.terraform.io/orina-org/lb/aws"
+  version = "1.1.0"
+
+  project = var.project
+  region = var.region
+  tags = var.tags
+  tier-name = "WEB-Tier"
+
+  healthly_threshold = var.lb_healthly_threshold
+  interval =  var.lb_interval
+  lb_name = "Frontend-Load-Balancer"
+  lb_type = var.lb_lb_type
+  listener_port = var.lb_listener_port
+  listener_protocol = var.lb_listener_protocol
+  matcher =  var.lb_matcher
+  path = var.lb_path
+  priority = var.lb_priority
+  
+  security_groups = [module.web_sg.sg_id]
+  subnets = module.networking.public_subnet_ids
+  vpc_id = module.networking.vpc_id
+  
+  
+  timeout = var.lb_timeout
+  unhealthy_threshold = var.lb_unhealthy_threshold
+  
+}
+
+
+module "app_lb" {
+  source  = "app.terraform.io/orina-org/lb/aws"
+  version = "1.1.0"
+
+  project = var.project
+  region = var.region
+  tags = var.tags
+  tier-name = "APP-Tier"
+
+  healthly_threshold = var.lb_healthly_threshold
+  interval =  var.lb_interval
+  lb_name = "Backend-Load-Balancer"
+  lb_type = var.lb_lb_type
+  listener_port = var.lb_listener_port
+  listener_protocol = var.lb_listener_protocol
+  matcher =  var.lb_matcher
+  path = var.lb_path
+  priority = var.lb_priority
+  
+  security_groups = [module.app_sg.sg_id]
+  subnets = module.networking.public_subnet_ids
+  vpc_id = module.networking.vpc_id
+  
+  
+  timeout = var.lb_timeout
+  unhealthy_threshold = var.lb_unhealthy_threshold
+  
+}
 
